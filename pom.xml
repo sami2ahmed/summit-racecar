@@ -12,6 +12,7 @@
     <modules>
         <module>kafka-iris-data</module>
         <module>kstreams-iris-classification</module>
+        <module>server-sent-events</module>
     </modules>
 
 </project>
