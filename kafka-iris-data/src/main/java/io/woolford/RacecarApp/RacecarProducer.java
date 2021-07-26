@@ -1,11 +1,14 @@
 package io.woolford.RacecarApp;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +16,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.serializer.JsonSerializer;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 
 @Component
@@ -66,23 +73,30 @@ public class RacecarProducer {
 
     @Bean
     public NewTopic createRacecarTopic() {
-        return TopicBuilder.name("racecar")
+        Map<String, String> props = new HashMap<>();
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class.getName());
+
+        return TopicBuilder.name("racecarDemo")
                 .partitions(1)
-                .replicas(3)
+                .replicas(3).configs(props)
                 .build();
     }
 
 
-    //@Scheduled(fixedDelay = 100000L)
+    @Scheduled(fixedDelay = 100000L)
     private void publishRacecarRecord() throws JsonProcessingException {
 
         ListIterator<RacecarRecord> itr = racecarRecordList.listIterator();
         while (itr.hasNext()) {
             RacecarRecord racecarRecord = itr.next();
 
+// verify why we cannot put json onto the topic
+
         ObjectMapper mapper = new ObjectMapper();
         String racecarRecordJson = mapper.writeValueAsString(racecarRecord);
-        kafkaTemplate.send("racecar", racecarRecordJson);
+        JsonNode finalJsonString = mapper.readTree(racecarRecordJson);
+        kafkaTemplate.send("racecarDemo", finalJsonString);
 
         }
 
