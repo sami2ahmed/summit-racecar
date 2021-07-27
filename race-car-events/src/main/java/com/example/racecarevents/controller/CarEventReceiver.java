@@ -26,7 +26,7 @@ import java.util.UUID;
 @RequestMapping(path = "/v1/api")
 public class CarEventReceiver {
 
-    private static final String RACE_CAR_TOPIC = "racecar";
+    private static final String RACE_CAR_TOPIC = "racecarDemo";
 
     @Value("${spring.kafka.bootstrap-servers}")
     private static String BOOTSTRAP_SERVERS = "pkc-ep9mm.us-east-2.aws.confluent.cloud:9092";
@@ -74,6 +74,8 @@ public class CarEventReceiver {
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
+        //props.put(JsonDeserializer.USE_TYPE_INFO_HEADERS, false);
+        props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, JsonNode.class);
         props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, SECURITY_PROTOCOL);
         props.put("sasl.mechanism",saslMechanism);
         props.put("sasl.jaas.config",jaasConfig);
