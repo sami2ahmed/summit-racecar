@@ -96,7 +96,7 @@ public class RacecarProducer {
         ObjectMapper mapper = new ObjectMapper();
         String racecarRecordJson = mapper.writeValueAsString(racecarRecord);
         JsonNode finalJsonString = mapper.readTree(racecarRecordJson);
-        kafkaTemplate.send("racecarDemo", finalJsonString);
+        kafkaTemplate.send("racecarDemo", racecarRecordJson);
 
         }
 
