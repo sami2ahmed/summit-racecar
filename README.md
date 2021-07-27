@@ -1,6 +1,6 @@
 # Realtime betting demo 
 
-The purpose of this project is to show how we can easily create a machine learning model and deploy it into production at scale.
+The purpose of this project is to show how we can easily create a realtime betting platform using Confluent Cloud, vue.js, and ksqlDB. 
 
 This example is based on a few datasets combined from Kaggle's [Formula One dataset](https://www.kaggle.com/cjgdev/formula-1-race-data-19502017)
 
