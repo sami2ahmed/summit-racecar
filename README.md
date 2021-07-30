@@ -12,3 +12,6 @@ To run this in your environment, you'll want to edit the values in the following
  - `kafka-iris-data/src/main/resources/application.properties`
 
 As well as edit your environment variables within your IDE (I used IntelliJ so it's within edit configurations > environment variables) to get all the required data to connect to your Confluent Cloud instance (bootstrap-servers etc.)   
+
+
+The model project was created using [Immutables](https://immutables.github.io/) which will require [configuration of your ide](https://immutables.github.io/apt.html)

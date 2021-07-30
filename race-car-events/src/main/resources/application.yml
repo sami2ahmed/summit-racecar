@@ -3,11 +3,12 @@ server:
 
 spring:
   kafka:
-    bootstrap-servers: ${BOOTSTRAP_SERVERS}
-    security:
-      protocol: ${SECURITY_PROTOCOL}
-    properties:
-      sasl:
-        mechanism: ${SASL_MECHANISM}
-        jaas:
-          config: ${SASL_JAAS_CONFIG}
+#    bootstrap-servers: ${BOOTSTRAP_SERVERS}
+    bootstrap-servers: localhost:9092
+#    security:
+#      protocol: ${SECURITY_PROTOCOL}
+#    properties:
+#      sasl:
+#        mechanism: ${SASL_MECHANISM}
+#        jaas:
+#          config: ${SASL_JAAS_CONFIG}
