@@ -17,7 +17,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.serializer.JsonSerializer;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
@@ -76,6 +75,7 @@ public class RacecarProducer {
         Map<String, String> props = new HashMap<>();
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class.getName());
+        props.put(ProducerConfig.LINGER_MS_CONFIG, String.valueOf(10000));
 
         return TopicBuilder.name("racecarDemo")
                 .partitions(1)
@@ -84,7 +84,7 @@ public class RacecarProducer {
     }
 
 
-    @Scheduled(fixedDelay = 100000L)
+   // @Scheduled(fixedDelay = 10000, initialDelay = 10000)
     private void publishRacecarRecord() throws JsonProcessingException {
 
         ListIterator<RacecarRecord> itr = racecarRecordList.listIterator();
