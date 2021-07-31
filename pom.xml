@@ -3,16 +3,40 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>io.woolford</groupId>
-    <artifactId>kstreams-h2o-example</artifactId>
-    <packaging>pom</packaging>
+    <groupId>com.github.sami2ahmed.examples.racecar</groupId>
+    <artifactId>summit-racecar-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <spring.boot.version>2.4.1</spring.boot.version>
+    </properties>
 
     <modules>
-        <module>kafka-iris-data</module>
-        <module>kstreams-iris-classification</module>
-        <module>server-sent-events</module>
+        <module>model</module>
+        <module>laptime-producer</module>
+        <module>race-car-events</module>
     </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
 </project>
