@@ -1,5 +1,4 @@
 raceId,raceStatus,driverId,lap,position,time,milliseconds,driverRef,forename,surname,dob,nationality,url
-1,1,,,,,,,,,,,
 1,1,18,1,1,01:35.7,95652,button,Jenson,Button,19/01/1980,British,http://en.wikipedia.org/wiki/Jenson_Button
 1,1,20,1,2,01:39.6,99647,vettel,Sebastian,Vettel,3/7/87,German,http://en.wikipedia.org/wiki/Sebastian_Vettel
 1,1,13,1,3,01:40.2,100201,massa,Felipe,Massa,25/04/1981,Brazilian,http://en.wikipedia.org/wiki/Felipe_Massa
@@ -1005,4 +1004,3 @@ raceId,raceStatus,driverId,lap,position,time,milliseconds,driverRef,forename,sur
 1,1,16,58,10,02:12.4,132441,sutil,Adrian,Sutil,11/1/83,German,http://en.wikipedia.org/wiki/Adrian_Sutil
 1,1,2,58,11,02:12.7,132652,heidfeld,Nick,Heidfeld,10/5/77,German,http://en.wikipedia.org/wiki/Nick_Heidfeld
 1,1,21,58,12,02:11.9,131921,fisichella,Giancarlo,Fisichella,14/01/1973,Italian,http://en.wikipedia.org/wiki/Giancarlo_Fisichella
-,0,,,,,,,,,,,
