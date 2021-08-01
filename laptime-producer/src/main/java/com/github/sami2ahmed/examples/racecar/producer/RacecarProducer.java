@@ -40,6 +40,7 @@ public class RacecarProducer {
 
         CsvSchema schema = CsvSchema.builder()
             .addColumn("raceId", CsvSchema.ColumnType.NUMBER)
+            .addColumn("raceStatus", CsvSchema.ColumnType.NUMBER)
             .addColumn("driverId", CsvSchema.ColumnType.NUMBER)
             .addColumn("lap", CsvSchema.ColumnType.NUMBER)
             .addColumn("position", CsvSchema.ColumnType.NUMBER)
@@ -54,7 +55,7 @@ public class RacecarProducer {
             .build().withHeader();
 
         logger.info(".ctor() - Read driver_laps_sorted_final.csv to memory.");
-        try(InputStream inputStream = this.getClass().getResourceAsStream("/race_1_only.csv")) {
+        try(InputStream inputStream = this.getClass().getResourceAsStream("/race_1_only_sorted.csv")) {
             CsvMapper csvMapper = new CsvMapper();
             MappingIterator<LapTime> racecarIter = csvMapper.readerFor(LapTime.class)
                 .with(schema)
