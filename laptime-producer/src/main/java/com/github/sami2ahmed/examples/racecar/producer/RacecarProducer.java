@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import com.github.sami2ahmed.examples.racecar.model.ImmutableRaceDetails;
 import com.github.sami2ahmed.examples.racecar.model.LapTime;
+import com.github.sami2ahmed.examples.racecar.model.RaceDetails;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +34,7 @@ public class RacecarProducer {
     private final Logger logger = LoggerFactory.getLogger(RacecarProducer.class);
 
     @Autowired
-    KafkaTemplate<String, LapTime> kafkaTemplate;
+    KafkaTemplate<String, Object> kafkaTemplate;
 
     private Iterator<LapTime> records;
 
@@ -40,7 +42,6 @@ public class RacecarProducer {
 
         CsvSchema schema = CsvSchema.builder()
             .addColumn("raceId", CsvSchema.ColumnType.NUMBER)
-            .addColumn("raceStatus", CsvSchema.ColumnType.NUMBER)
             .addColumn("driverId", CsvSchema.ColumnType.NUMBER)
             .addColumn("lap", CsvSchema.ColumnType.NUMBER)
             .addColumn("position", CsvSchema.ColumnType.NUMBER)
@@ -65,7 +66,18 @@ public class RacecarProducer {
         }
     }
 
+    static final String TOPIC2 = "RaceDetails";
     static final String TOPIC = "racecarDemo";
+
+    @Bean
+    public NewTopic RaceDetails() {
+        Map<String, String> props = new HashMap<>();
+        return TopicBuilder.name(TOPIC2)
+                .partitions(1)
+                .replicas(3)
+                .configs(props)
+                .build();
+    }
 
     @Bean
     public NewTopic createRacecarTopic() {
@@ -77,16 +89,33 @@ public class RacecarProducer {
                 .build();
     }
 
-
-    @Scheduled(fixedDelay = 100L)
+    boolean isRaceStatus = false;
+    @Scheduled(fixedDelay = 10L)
     private void publishRacecarRecord() throws JsonProcessingException {
+        if(this.records.hasNext()) {
+            RaceDetails raceDetails = ImmutableRaceDetails.builder()
+                    .raceId("1")
+                    .raceStatus(false)
+                    .build();
+            kafkaTemplate.send("RaceDetails", raceDetails.raceId(), raceDetails);
+            isRaceStatus = false;
+        }
         if(!this.records.hasNext()) {
             logger.debug("publishRacecarRecord() - No more records.");
+            if(!isRaceStatus) {
+                RaceDetails raceDetails = ImmutableRaceDetails.builder()
+                    .raceId("1")
+                    .raceStatus(true)
+                    .build();
+                kafkaTemplate.send("RaceDetails", raceDetails.raceId(), raceDetails);
+                isRaceStatus = true;
+            }
+            return;
         }
 
         LapTime record = this.records.next();
         logger.trace("publishRacecarRecord() - sending {}", record);
-        ListenableFuture<SendResult<String, LapTime>> future = kafkaTemplate.send(TOPIC, record.raceId(), record);
+        ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(TOPIC, record.raceId(), record);
         future.addCallback(new ListenableFutureCallback<>() {
             @Override
             public void onFailure(Throwable throwable) {
@@ -94,7 +123,7 @@ public class RacecarProducer {
             }
 
             @Override
-            public void onSuccess(SendResult<String, LapTime> result) {
+            public void onSuccess(SendResult<String, Object> result) {
                 if (null != result.getRecordMetadata()) {
                     logger.info("Record written to Kafka. topic = '{}' partition = {} offset = {}",
                         result.getRecordMetadata().topic(),

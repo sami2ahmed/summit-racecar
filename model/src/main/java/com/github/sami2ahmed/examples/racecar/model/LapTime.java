@@ -2,18 +2,13 @@ package com.github.sami2ahmed.examples.racecar.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.immutables.value.Value;
 
 @Value.Immutable
-@JsonSerialize(as = ImmutableLapTime.class)
 @JsonDeserialize(as = ImmutableLapTime.class)
 public interface LapTime {
   @JsonProperty("raceId")
   String raceId();
-
-  @JsonProperty("raceStatus")
-  String raceStatus();
 
   @JsonProperty("driverId")
   String driverId();
