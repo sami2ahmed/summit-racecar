@@ -42,7 +42,6 @@ public class RacecarProducer {
 
         CsvSchema schema = CsvSchema.builder()
             .addColumn("raceId", CsvSchema.ColumnType.NUMBER)
-            .addColumn("raceStatus", CsvSchema.ColumnType.NUMBER)
             .addColumn("driverId", CsvSchema.ColumnType.NUMBER)
             .addColumn("lap", CsvSchema.ColumnType.NUMBER)
             .addColumn("position", CsvSchema.ColumnType.NUMBER)
@@ -67,7 +66,18 @@ public class RacecarProducer {
         }
     }
 
+    static final String TOPIC2 = "RaceDetails";
     static final String TOPIC = "racecarDemo";
+
+    @Bean
+    public NewTopic RaceDetails() {
+        Map<String, String> props = new HashMap<>();
+        return TopicBuilder.name(TOPIC2)
+                .partitions(1)
+                .replicas(3)
+                .configs(props)
+                .build();
+    }
 
     @Bean
     public NewTopic createRacecarTopic() {
@@ -79,19 +89,27 @@ public class RacecarProducer {
                 .build();
     }
 
-    boolean isRaceFinished = false;
-    @Scheduled(fixedDelay = 100L)
+    boolean isRaceStatus = false;
+    @Scheduled(fixedDelay = 10L)
     private void publishRacecarRecord() throws JsonProcessingException {
+        if(this.records.hasNext()) {
+            RaceDetails raceDetails = ImmutableRaceDetails.builder()
+                    .raceId("1")
+                    .raceStatus(false)
+                    .build();
+            kafkaTemplate.send("RaceDetails", raceDetails.raceId(), raceDetails);
+            isRaceStatus = false;
+        }
         if(!this.records.hasNext()) {
             logger.debug("publishRacecarRecord() - No more records.");
-            if(!isRaceFinished) {
+            if(!isRaceStatus) {
                 RaceDetails raceDetails = ImmutableRaceDetails.builder()
-                    //TODO: Fill this out. It'll error.
+                    .raceId("1")
+                    .raceStatus(true)
                     .build();
-                kafkaTemplate.send("raceDetails", raceDetails.raceId(), raceDetails);
-                isRaceFinished = true;
+                kafkaTemplate.send("RaceDetails", raceDetails.raceId(), raceDetails);
+                isRaceStatus = true;
             }
-            //TODO: Publish race finished
             return;
         }
 
