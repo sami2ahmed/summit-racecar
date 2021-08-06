@@ -33,20 +33,20 @@
         :handlers.sync="handlers"
       />
     </div>
-
     <div>
-      <LogDisplay
+      <LogDisplayNew
         :logs="logs"
       />
     </div>
   </div>
+
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import { SSEClient } from 'vue-sse/types'
 import Handlers from './components/Handlers.vue'
-import LogDisplay from './components/LogDisplay.vue'
+import LogDisplayNew from './components/LogDisplayNew.vue'
 import { now } from './utils'
 
 let client: SSEClient | null
@@ -55,21 +55,18 @@ export default Vue.extend({
   name: 'App',
   components: {
     Handlers,
-    LogDisplay
+    LogDisplayNew
   },
   data () {
     return {
-      url: '/sse',
+      url: '/v1/api/sse?raceId=1',
+      generateColumns: 'test',
       includeCredentials: false,
-      format: 'plain',
+      format: 'json',
       handlers: [
         {
           event: 'message',
           color: '#60778e'
-        },
-        {
-          event: 'time',
-          color: '#778e60'
         }
       ],
       logs: [] as [string, string, string][]
@@ -163,7 +160,7 @@ button, input, select {
   }
 
   #app > div:first-child {
-    text-align: right;
+    text-align: left;
   }
 
   #app > div:last-child {

@@ -35,7 +35,7 @@ export default Vue.extend({
 
 <style>
 #logs {
-  background: #222831;
+  background: #444831;
   border-radius: 0.25rem;
   color: #e7e6e1;
   height: calc(100vh - 4rem);
