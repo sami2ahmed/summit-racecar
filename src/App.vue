@@ -7,20 +7,20 @@
           <input type="text" v-model="url" placeholder="http://">
         </p>
 
-        <p>
+        <!-- <p>
           <label>Format:</label>
           <select v-model="format">
             <option value="plain">Plain</option>
             <option value="json">JSON</option>
           </select>
-        </p>
+        </p> -->
 
-        <p>
+        <!-- <p>
           <label>
             <input type="checkbox" v-model="includeCredentials">
             Include credentials?
           </label>
-        </p>
+        </p> -->
 
         <p>
           <button :disabled="url.length === 0" @click.prevent="connect">Connect</button>
@@ -29,9 +29,9 @@
         </p>
       </div>
 
-      <handlers
+      <!-- <handlers
         :handlers.sync="handlers"
-      />
+      /> -->
     </div>
     <div>
       <LogDisplayNew
@@ -45,7 +45,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { SSEClient } from 'vue-sse/types'
-import Handlers from './components/Handlers.vue'
+// import Handlers from './components/Handlers.vue'
 import LogDisplayNew from './components/LogDisplayNew.vue'
 import { now } from './utils'
 
@@ -54,7 +54,6 @@ let client: SSEClient | null
 export default Vue.extend({
   name: 'App',
   components: {
-    Handlers,
     LogDisplayNew
   },
   data () {
