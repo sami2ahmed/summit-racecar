@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  kafka:
+    bootstrap-servers: ${BOOTSTRAP_SERVERS}
+    security:
+      protocol: ${SECURITY_PROTOCOL}
+    properties:
+      sasl:
+        mechanism: ${SASL_MECHANISM}
+        jaas:
+          config: ${SASL_JAAS_CONFIG}
