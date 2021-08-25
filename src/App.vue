@@ -45,7 +45,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import { SSEClient } from 'vue-sse/types'
-// import Handlers from './components/Handlers.vue'
 import LogDisplayNew from './components/LogDisplayNew.vue'
 import { now } from './utils'
 
@@ -65,7 +64,7 @@ export default Vue.extend({
       handlers: [
         {
           event: 'message',
-          color: '#60778e'
+          color: '#00000'
         }
       ],
       logs: [] as [string, string, string][]
@@ -81,8 +80,9 @@ export default Vue.extend({
       // create the client with the user's config
       client = this.$sse.create({
         url: this.url,
-        includeCredentials: this.includeCredentials,
-        format: this.format
+        format: this.format,
+        color: '#00000'
+      //  includeCredentials: this.includeCredentials
       })
 
       // add the user's handlers
@@ -119,7 +119,12 @@ export default Vue.extend({
     },
 
     log (message: string, color: string) {
+      console.log('heyo ', typeof message)
+      // const formattedobject = JSON.parse(message)
+      // console.log(formattedobject)
       this.logs.push([now(), message, color])
+      console.log('array is ', this.logs)
+      // console.info('parsed json', JSON.parse(message))
     }
   },
   beforeDestroy () {

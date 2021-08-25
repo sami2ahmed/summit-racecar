@@ -5,13 +5,19 @@
             <thead>
                 <tr>
                     <th>Timestamp</th>
-                    <th>Log</th>
+                    <th>Driver</th>
+                    <th>Lap</th>
+                    <th>Position</th>
+                    <th>Surname</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(l, i) in logs" :key="i">
                     <td>{{l[0]}}</td>
-                    <td>{{l[1]}}</td>
+                    <td>{{l[1]["driverId"]}}</td>
+                    <td>{{l[1]["lap"]}}</td>
+                    <td>{{l[1]["position"]}}</td>
+                    <td>{{l[1]["surname"]}}</td>
                 </tr>
             </tbody>
         </table>
@@ -42,6 +48,14 @@ export default Vue.extend({
 </script>
 
 <style>
+.table>thead>tr>th {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 2;
+  background-color: white;
+}
+
 #logs {
   background: #333831;
   border-radius: 0.25rem;
