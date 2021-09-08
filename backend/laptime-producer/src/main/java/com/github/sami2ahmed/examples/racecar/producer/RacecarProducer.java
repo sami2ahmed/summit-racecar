@@ -90,7 +90,7 @@ public class RacecarProducer {
     }
 
     boolean isRaceStatus = false;
-    @Scheduled(fixedDelay = 100L)
+    @Scheduled(fixedDelay = 10L)
     private void publishRacecarRecord() throws JsonProcessingException {
         if(this.records.hasNext()) {
             RaceDetails raceDetails = ImmutableRaceDetails.builder()
