@@ -15,6 +15,7 @@ At a high level, there are three parts to this demo:
 3. npm 
 4. java
 5. vue.js 
+6. maven 
 
 # Demo architecture 
 
