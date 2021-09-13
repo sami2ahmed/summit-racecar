@@ -66,9 +66,7 @@ SECURITY_PROTOCOL=SASL_SSL
 SASL_JAAS_CONFIG=org.apache.kafka.common.security.plain.PlainLoginModule   required username='NOTREALYES4FAKER'   password='NOTREALBKDFLK1+nlOVC+NFeYZ9BpHDcsnQuhdgJeMaQhlHChlw/5+Cgsgl4lEnP';
 SASL_MECHANISM=PLAIN
 ```
-
-Likewise, in the RaceCarEventsApplication there's another applicatino.properties file. Ensure that your environment variables are set to point to the same cluster as your laptime-producer. 
-
+  
 Spin up the RaceCarEventsApplication.  You should see a Netty started on 8080. Go back to the UI, and hit the "connect" button. You should see a timestamp entry in the UI. In the RaceCarEventsApplication output, you will see an "UNKNOWN_TOPIC" error which is expected. The topics will been created by the RacecarApp in our next step. After those 
 
 We can now produce data from our client to server now that the connection has been initiated and established by the server. Launch the RacecarApp, you should momentarily see racecar data getting populated into the UI and also into the Confluent Cloud topic. Now that topics are created, in the RaceCarEventsApplication output, you should now also see a consumer group subscribe to racecarDemo topic, some output like: `Consumer clientId=car-consumer-1-8e93e253-34ca-4e2e-910f-86ed47487d7b, groupId=1] Subscribed to topic(s): racecarDemo`.  In running the RacecarApp, if any of the Immutable data models are giving you guff (saying they cannot be found on import etc.) try reloading all maven projects. 
