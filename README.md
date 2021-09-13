@@ -13,6 +13,8 @@ At a high level, there are three parts to this demo:
 1. Basic cluster in Confluent Cloud
 2. Confluent Cloud CLI 
 3. npm 
+4. java
+5. vue.js 
 
 # Demo architecture 
 
