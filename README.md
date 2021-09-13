@@ -13,7 +13,7 @@ At a high level, there are three parts to this demo:
 1. Basic cluster in Confluent Cloud
 2. Confluent Cloud CLI 
 3. npm 
-4. java
+4. java11
 5. vue.js 
 6. maven 
 
@@ -73,3 +73,8 @@ Spin up the RaceCarEventsApplication.  You should see a Netty started on 8080. 
 We can now produce data from our client to server now that the connection has been initiated and established by the server. Launch the RacecarApp, you should momentarily see racecar data getting populated into the UI and also into the Confluent Cloud topic. Now that topics are created, in the RaceCarEventsApplication output, you should now also see a consumer group subscribe to racecarDemo topic, some output like: `Consumer clientId=car-consumer-1-8e93e253-34ca-4e2e-910f-86ed47487d7b, groupId=1] Subscribed to topic(s): racecarDemo`.  In running the RacecarApp, if any of the Immutable data models are giving you guff (saying they cannot be found on import etc.) try reloading all maven projects. 
 
 You can control + c in your terminal to spin down the UI when you are done. 
+
+## To run the backend 
+
+ cd summit-racecar/backend 
+ mvn package -U 
