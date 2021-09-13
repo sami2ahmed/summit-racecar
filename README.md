@@ -34,7 +34,7 @@ cd /frontend
 npm install 
 npm run serve 
 
-you may receive this error, please ignore and continue: 
+```you may receive this error, please ignore and continue: 
 ERROR in /Users/samiahmed/IdeaProjects/summit_racecar_demo/frontend/src/App.vue(83,9):
 83:9 Type 'string' is not assignable to type '"json" | "plain" | MessageFormatter<any> | undefined'.
     81 |       client = this.$sse.create({
@@ -44,16 +44,16 @@ ERROR in /Users/samiahmed/IdeaProjects/summit_racecar_demo/frontend/src/App.vue(
     84 |         color: '#00000'
     85 |       //  includeCredentials: this.includeCredentials
     86 |       })
-Version: typescript 3.9.9
+Version: typescript 3.9.9```
 
 open browser window, copy paste local endpoint app spins up on, for example: 
-http://localhost:8080/
+`http://localhost:8080/`
 
 you should now see the UI in the browser: 
 
 Now to establish the SSE connection, ensure that port within the application.yml nested in the race-car-events module is set to the same port as the local UI endpoint (8080 in this case). 
 
-Importantly, you will also notice an application.properties file in the laptime-produce module i.e. (backend/laptime-producer/src/main/resources/application.properties). Please configure the 4 environment variables so that this properties file is referencing your Confluent basic cluster, for example in my IntelliJ configurations I have: 
+Importantly, you will also notice an application.properties file in the laptime-produce module i.e. (`backend/laptime-producer/src/main/resources/application.properties`). Please configure the 4 environment variables so that this properties file is referencing your Confluent basic cluster, for example in my IntelliJ configurations I have: 
 
 ```
 BOOTSTRAP_SERVERS=pkc-ef9nm.us-east-2.aws.confluent.cloud:9092
@@ -66,7 +66,6 @@ Likewise, in the RaceCarEventsApplication there's another applicatino.properties
 
 Spin up the RaceCarEventsApplication.  You should see a Netty started on 8080. Go back to the UI, and hit the "connect" button. You should see a timestamp entry in the UI. In the RaceCarEventsApplication output, you will see an "UNKNOWN_TOPIC" error which is expected. The topics will been created by the RacecarApp in our next step. After those 
 
-We can now produce data from our client to server now that the connection has been initiated and established by the server. Launch the RacecarApp, you should momentarily see racecar data getting populated into the UI and also into the Confluent Cloud topic. Now that topics are created, in the RaceCarEventsApplication output, you should now also see a consumer group subscribe to racecarDemo topic, some output like: Consumer clientId=car-consumer-1-8e93e253-34ca-4e2e-910f-86ed47487d7b, groupId=1] Subscribed to topic(s): racecarDemo.  In running the RacecarApp, if any of the Immutable data models are giving you guff (saying they cannot be found on import etc.) try reloading all maven projects. 
-
+We can now produce data from our client to server now that the connection has been initiated and established by the server. Launch the RacecarApp, you should momentarily see racecar data getting populated into the UI and also into the Confluent Cloud topic. Now that topics are created, in the RaceCarEventsApplication output, you should now also see a consumer group subscribe to racecarDemo topic, some output like: `Consumer clientId=car-consumer-1-8e93e253-34ca-4e2e-910f-86ed47487d7b, groupId=1] Subscribed to topic(s): racecarDemo`.  In running the RacecarApp, if any of the Immutable data models are giving you guff (saying they cannot be found on import etc.) try reloading all maven projects. 
 
 You can control + c in your terminal to spin down the UI when you are done. 
