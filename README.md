@@ -35,7 +35,8 @@ cd /frontend
 npm install 
 npm run serve 
 
-```you may receive this error, please ignore and continue: 
+```
+you may receive this error, please ignore and continue: 
 ERROR in /Users/samiahmed/IdeaProjects/summit_racecar_demo/frontend/src/App.vue(83,9):
 83:9 Type 'string' is not assignable to type '"json" | "plain" | MessageFormatter<any> | undefined'.
     81 |       client = this.$sse.create({
@@ -45,7 +46,8 @@ ERROR in /Users/samiahmed/IdeaProjects/summit_racecar_demo/frontend/src/App.vue(
     84 |         color: '#00000'
     85 |       //  includeCredentials: this.includeCredentials
     86 |       })
-Version: typescript 3.9.9```
+Version: typescript 3.9.9
+```
 
 open browser window, copy paste local endpoint app spins up on, for example: 
 `http://localhost:8080/`
