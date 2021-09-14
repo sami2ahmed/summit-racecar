@@ -56,7 +56,7 @@ you should now see the UI in the browser:
 
 Now to establish the server sent events (SSE) connection, ensure that port within the application.yml nested in the race-car-events module is set to the same port as the local UI endpoint (8080 in this case). 
 
-Importantly, you will also notice an application.properties file in the laptime-produce module i.e. (`java/laptime-producer/src/main/resources/application.properties`). Please configure the 4 environment variables so that this properties file is referencing your Confluent basic cluster, for example in my IntelliJ configurations I have: 
+Importantly, you will also notice an application.properties file in the laptime-produce module i.e. (`java/laptime-producer/src/main/resources/application.properties`). Please configure the 4 environment variables so that this properties file is referencing your Confluent basic cluster, for example in my local application.properties I have: 
 
 ```
 BOOTSTRAP_SERVERS=pkc-ef9nm.us-east-2.aws.confluent.cloud:9092
@@ -64,12 +64,6 @@ SECURITY_PROTOCOL=SASL_SSL
 SASL_JAAS_CONFIG=org.apache.kafka.common.security.plain.PlainLoginModule   required username='NOTREALYES4FAKER'   password='NOTREALBKDFLK1+nlOVC+NFeYZ9BpHDcsnQuhdgJeMaQhlHChlw/5+Cgsgl4lEnP';
 SASL_MECHANISM=PLAIN
 ```
-## To run the SSE (RaceCarEventsApplication.java)
-open up another terminal window and run the sse.sh file i.e. 
-1. `chmod +x sse.sh`
-2. `bash sse.sh` 
-
-You should see a Netty started on 8080.
 
 ## To run the SSE (RaceCarEventsApplication.java)
 open up another terminal window and run the sse.sh file i.e. 
@@ -78,7 +72,7 @@ open up another terminal window and run the sse.sh file i.e.
 
 You should see a Netty started on 8080.
 
-Now we need to give the the sse access to the cluster through consumer group ACL. 
+## Now we need to give the the sse access to the cluster through consumer group ACL. 
 1. `chmod +x SseConsumerAcl.sh`
 2. `bash SseConsumerAcl.sh`   
   
@@ -86,7 +80,7 @@ Go back to the UI, and hit the "connect" button. You should see a timestamp entr
 In the RaceCarEventsApplication terminal output, you will see an "UNKNOWN_TOPIC" error which is expected. The topics will been created by the RacecarProducer.sh (RacecarApp.java) in our next step.
 
 We can now produce data from our client to server now that the connection has been initiated and established by the server. When you launch the RacecarApp, you should see racecar data getting populated into the UI and also into the Confluent Cloud topic. 
-Now that topics are created, in the RaceCarEventsApplication output, you should now also see a consumer group subscribe to racecarDemo topic, some output like: `Consumer clientId=car-consumer-1-8e93e253-34ca-4e2e-910f-86ed47487d7b, groupId=1] Subscribed to topic(s): racecarDemo`.  
+Now that topics are created, in the RaceCarEventsApplication output, you should now also see a consumer group subscribe to racecarDemo topic, some output like: `Consumer clientId=car-consumer-1-8d93a253-34ca-4f2a-910f-86ed47487d7b, groupId=1] Subscribed to topic(s): racecarDemo`.  
   
 ## Open up another new terminal to launch the laptime-produce (RacecarApp.java)
 1. `chmod +x RacecarProducer.sh`
@@ -96,7 +90,7 @@ In running the RacecarApp, if any of the Immutable data models are giving you gu
 
 You can control + c in each terminal window to spin down the UI and backend (both the SSE and producer) when you are done. 
   
-# Simulating bets 
+## Simulating bets 
 
 Simulating bets will cause your odds calculations to change. In order to simulate bets for a given user, please run: \
  **node/bet-producer.js [bootstrap-server] [api-key] [api-secret] [racecardriver you want to bet on] [# of bets to simulate]** \
