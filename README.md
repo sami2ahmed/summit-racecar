@@ -33,14 +33,6 @@ ccloud login \
 ccloud kafka cluster list
 ccloud kafka cluster use <enter lkc for basic cluster here>
 
-## Consumer group access for input and internal topics by application.id prefix
-`ccloud kafka acl create --allow --service-account <service account id> --operation READ --operation delete --operation describe --consumer-group car-consumer --prefix`
-
-## Give service account access to all topics in cluster
-`ccloud kafka acl create --allow --service-account <service account id> --operation READ --operation delete --operation describe --topic '*'`
-
-*note on the above, the service account id is a 7 digit id. 
-
 ## to setup the frontend
 git clone this repo and in a terminal run the frontend.sh file from the summit-racecar directory i.e. 
 1. `chmod +x frontend.sh`
