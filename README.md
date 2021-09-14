@@ -84,10 +84,10 @@ Now we need to give the the sse access to the cluster through consumer group ACL
 Go back to the UI, and hit the "connect" button. You should see a timestamp entry in the UI. 
 In the RaceCarEventsApplication terminal output, you will see an "UNKNOWN_TOPIC" error which is expected. The topics will been created by the RacecarProducer.sh (RacecarApp.java) in our next step.
 
-We can now produce data from our client to server now that the connection has been initiated and established by the server. When you launch the RacecarApp, you should momentarily see racecar data getting populated into the UI and also into the Confluent Cloud topic. 
+We can now produce data from our client to server now that the connection has been initiated and established by the server. When you launch the RacecarApp, you should see racecar data getting populated into the UI and also into the Confluent Cloud topic. 
 Now that topics are created, in the RaceCarEventsApplication output, you should now also see a consumer group subscribe to racecarDemo topic, some output like: `Consumer clientId=car-consumer-1-8e93e253-34ca-4e2e-910f-86ed47487d7b, groupId=1] Subscribed to topic(s): racecarDemo`.  
   
-## Open up another new terminal, to run the laptime-produce (RacecarApp.java)
+## Open up another new terminal to launch the laptime-produce (RacecarApp.java)
 1. `chmod +x RacecarProducer.sh`
 2. `bash RacecarProducer.sh` 
 
