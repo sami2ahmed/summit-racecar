@@ -155,15 +155,17 @@ ccloud api-key use $API_KEY_CREATE_KSQL --resource $CLUSTER
 ccloud ksql app create odds-calculation-app --api-key $API_KEY_CREATE_KSQL --api-secret $API_SECRET_CREATE_KSQL
 #! ccloud ksql app configure-acls
 
-echo "waiting for ksql app to be up"
+echo "Provisioning ksqlDB application"
 
 ksqldb_meta=$(ccloud ksql app list -o json | jq -r 'map(select(.endpoint == "'"$ksqldb_endpoint"'")) | .[]')
 ksqldb_status=$(ccloud ksql app list -o json | jq '.[].status')
-
-while [[ $ksqldb_status != "UP" ]]; do
-    echo "Waiting for ksqlDB to come up"
+ksqldb_status=$(echo $ksqldb_status | tr -d '"')
+ 
+while [ $ksqldb_status != "UP" ]; do
+    echo "Waiting 60 seconds for ksqlDB to come up"
     sleep 60
     ksqldb_status=$(ccloud ksql app list -o json | jq '.[].status')
+    ksqldb_status=$(echo $ksqldb_status | tr -d '"')
   done
 
 echo "ksql is up moving on" 
