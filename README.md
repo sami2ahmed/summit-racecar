@@ -68,27 +68,28 @@ SECURITY_PROTOCOL=SASL_SSL
 SASL_JAAS_CONFIG=org.apache.kafka.common.security.plain.PlainLoginModule   required username='NOTREALYES4FAKER'   password='NOTREALBKDFLK1+nlOVC+NFeYZ9BpHDcsnQuhdgJeMaQhlHChlw/5+Cgsgl4lEnP';
 SASL_MECHANISM=PLAIN
 ```
-  
-Spin up the RaceCarEventsApplication.  You should see a Netty started on 8080. Go back to the UI, and hit the "connect" button. You should see a timestamp entry in the UI. In the RaceCarEventsApplication output, you will see an "UNKNOWN_TOPIC" error which is expected. The topics will been created by the RacecarApp in our next step. After those 
-
-We can now produce data from our client to server now that the connection has been initiated and established by the server. Launch the RacecarApp, you should momentarily see racecar data getting populated into the UI and also into the Confluent Cloud topic. Now that topics are created, in the RaceCarEventsApplication output, you should now also see a consumer group subscribe to racecarDemo topic, some output like: `Consumer clientId=car-consumer-1-8e93e253-34ca-4e2e-910f-86ed47487d7b, groupId=1] Subscribed to topic(s): racecarDemo`.  In running the RacecarApp, if any of the Immutable data models are giving you guff (saying they cannot be found on import etc.) try reloading all maven projects. 
-
-You can control + c in your terminal to spin down the UI when you are done. 
-
-## To run the backend, first build it 
+## To run the SSE (RaceCarEventsApplication.java), open up a new terminal and run the <tbd>.sh file 
 export JAVA_HOME=`/usr/libexec/java_home -v 1.11` 
 cd summit-racecar/backend 
 mvn package -U 
-  
-## start SSE server (RaceCarEventsApplication.java) 
-export JAVA_HOME=`/usr/libexec/java_home -v 1.11` 
 cd race-car-events  
 mvn package -U 
 mvn org.springframework.boot:spring-boot-maven-plugin:run
 
-## startup laptime-producer in a separate, new terminal tab (RacecarApp.java) 
-cd .. 
-cd laptime-producer
+You should see a Netty started on 8080.
+Go back to the UI, and hit the "connect" button. You should see a timestamp entry in the UI. 
+In the RaceCarEventsApplication terminal output, you will see an "UNKNOWN_TOPIC" error which is expected. The topics will been created by the RacecarApp in our next step.
+
+We can now produce data from our client to server now that the connection has been initiated and established by the server. Launch the RacecarApp, you should momentarily see racecar data getting populated into the UI and also into the Confluent Cloud topic. 
+Now that topics are created, in the RaceCarEventsApplication output, you should now also see a consumer group subscribe to racecarDemo topic, some output like: `Consumer clientId=car-consumer-1-8e93e253-34ca-4e2e-910f-86ed47487d7b, groupId=1] Subscribed to topic(s): racecarDemo`.  
+  
+## Open up another new terminal, to start laptime-produce (RacecarApp.java), run the <tbd2>.sh file
+cd summit-racecar/backend/laptime-producer
+export JAVA_HOME=`/usr/libexec/java_home -v 1.11` 
+mvn package -U 
 mvn org.springframework.boot:spring-boot-maven-plugin:run 
 
-  
+
+In running the RacecarApp, if any of the Immutable data models are giving you guff (saying they cannot be found on import etc.) try reloading all maven projects. 
+
+You can control + c in each terminal window to spin down the UI and backend (both the SSE and producer) when you are done. 
