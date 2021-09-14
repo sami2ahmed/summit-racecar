@@ -1,13 +1,14 @@
 # Realtime (racecar) betting demo with Confluent Cloud 
 
-The purpose of this project is to show how we can easily create a realtime betting platform using Confluent Cloud, Vue.js, Springboot, and Confluent's ksqlDB.
+The purpose of this project is to show how we can easily create a realtime betting platform using Confluent Cloud and Ksqldb.
 
 This example is based on a few datasets combined from Kaggle's [Formula One dataset]('https://www.kaggle.com/cjgdev/formula-1-race-data-19502017')
 
-At a high level, there are three parts to this demo:
-1. springboot backend
-2. Vue.js frontend 
-3. Confluent Cloud + ksqldb (hosted stream processing in Confluent) performing data transformations as the data flows into a Confluent Cloud cluster.
+At a high level, there are four parts to this demo:
+1. springboot (java) to populate racecar data and drive frontend with realtime events 
+2. Vue.js to render the race  
+3. Confluent Cloud + ksqldb (hosted stream processing in Confluent) performing data transformations as the data flows into a Confluent Cloud cluster
+4. node.js to simulate betting on the race 
 
 # Prerequisites
 1. Basic cluster in Confluent Cloud
