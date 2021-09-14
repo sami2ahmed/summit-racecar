@@ -29,7 +29,7 @@ make sure all components (including ksql queries) come up without error before m
 
 # Running the demo 
 To setup the Confluent Cloud cluster, you need to give the springboot service access to produce to the cluster. In a terminal run the following commands: 
-ccloud login
+ccloud login --save \
 ccloud kafka cluster list
 ccloud kafka cluster use <enter lkc for basic cluster here>
 
