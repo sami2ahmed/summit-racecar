@@ -76,10 +76,12 @@ We can now produce data from our client to server now that the connection has be
 You can control + c in your terminal to spin down the UI when you are done. 
 
 ## To run the backend, first build it 
+export JAVA_HOME=`/usr/libexec/java_home -v 1.11` 
 cd summit-racecar/backend 
 mvn package -U 
   
-## start SSE server (RaceCarEventsApplication.java)  
+## start SSE server (RaceCarEventsApplication.java) 
+export JAVA_HOME=`/usr/libexec/java_home -v 1.11` 
 cd race-car-events  
 mvn org.springframework.boot:spring-boot-maven-plugin:run
 
