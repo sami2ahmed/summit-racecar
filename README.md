@@ -12,7 +12,8 @@ At a high level, there are three parts to this demo:
 # Prerequisites
 1. Basic cluster in Confluent Cloud
 2. Confluent Cloud CLI 
-3. npm 
+3. npm
+3.5. npm install kafkajs, json-schema-faker and faker 
 4. java11
 5. vue.js 
 6. maven 
