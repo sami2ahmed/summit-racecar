@@ -81,6 +81,18 @@ open up another terminal window and run the sse.sh file i.e.
 2. `bash sse.sh` 
 
 You should see a Netty started on 8080.
+
+## To run the SSE (RaceCarEventsApplication.java)
+open up another terminal window and run the sse.sh file i.e. 
+1. `chmod +x sse.sh`
+2. `bash sse.sh` 
+
+You should see a Netty started on 8080.
+
+Now we need to give the the sse access to the cluster through consumer group ACL. 
+1. `chmod +x SseConsumerAcl.sh`
+2. `bash SseConsumerAcl.sh`   
+  
 Go back to the UI, and hit the "connect" button. You should see a timestamp entry in the UI. 
 In the RaceCarEventsApplication terminal output, you will see an "UNKNOWN_TOPIC" error which is expected. The topics will been created by the RacecarApp in our next step.
 
