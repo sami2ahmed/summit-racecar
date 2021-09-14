@@ -74,7 +74,17 @@ We can now produce data from our client to server now that the connection has be
 
 You can control + c in your terminal to spin down the UI when you are done. 
 
-## To run the backend 
+## To run the backend, first build it 
+cd summit-racecar/backend 
+mvn package -U 
+  
+## start SSE server (RaceCarEventsApplication.java)  
+cd race-car-events  
+mvn org.springframework.boot:spring-boot-maven-plugin:run
 
- cd summit-racecar/backend 
- mvn package -U 
+## startup laptime-producer (RacecarApp.java) 
+cd .. 
+cd laptime-producer
+mvn org.springframework.boot:spring-boot-maven-plugin:run 
+
+  
