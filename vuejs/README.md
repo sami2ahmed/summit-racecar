@@ -1,4 +1,4 @@
-# Frontend of realtime betting demo
+# realtime betting demo
 
 This is a Vue app that demonstrates how to drive a front end using server sent events for low latency use cases with Confluent Cloud.
 
