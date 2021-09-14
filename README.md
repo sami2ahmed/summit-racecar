@@ -22,10 +22,10 @@ At a high level, there are three parts to this demo:
 # Demo architecture 
 
 # Setting up the Confluent Cloud components 
-ccloud login 
-chmod +x setup.sh
-./setup.sh 
-make sure all components (including ksql queries) come up without error before moving on to deploying the race 
+ccloud login \
+chmod +x setup.sh \
+./setup.sh \
+make sure all components (including ksql queries) come up without error before moving on to deploying the race \
 
 # Running the demo 
 To setup the Confluent Cloud cluster, you need to give the springboot service access to produce to the cluster. In a terminal run the following commands: 
