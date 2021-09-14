@@ -28,10 +28,6 @@ chmod +x setup.sh \
 make sure all components (including ksql queries) come up without error before moving on to deploying the race 
 
 # Running the demo 
-To setup the Confluent Cloud cluster, you need to give the springboot service access to produce to the cluster. In a terminal run the following commands: 
-ccloud login \
-ccloud kafka cluster list
-ccloud kafka cluster use <enter lkc for basic cluster here>
 
 ## to setup the frontend
 git clone this repo and in a terminal run the frontend.sh file from the summit-racecar directory i.e. 
@@ -98,7 +94,6 @@ Now that topics are created, in the RaceCarEventsApplication output, you should 
 In running the RacecarApp, if any of the Immutable data models are giving you guff (saying they cannot be found on import etc.) try reloading all maven projects. Also please spin up the frontend before the backend to avoid port conflicts. 
 
 You can control + c in each terminal window to spin down the UI and backend (both the SSE and producer) when you are done. 
-  
   
 # Simulating bets 
 
