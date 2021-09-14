@@ -64,6 +64,7 @@ SECURITY_PROTOCOL=SASL_SSL
 SASL_JAAS_CONFIG=org.apache.kafka.common.security.plain.PlainLoginModule   required username='NOTREALYES4FAKER'   password='NOTREALBKDFLK1+nlOVC+NFeYZ9BpHDcsnQuhdgJeMaQhlHChlw/5+Cgsgl4lEnP';
 SASL_MECHANISM=PLAIN
 ```
+Please also configure those same four variables within the yaml file for the race-car-events module i.e. (`java/race-car-events/src/main/resources/application.yml`). Leave the port set to 8080. 
 
 ## To run the SSE (RaceCarEventsApplication.java)
 open up another terminal window and run the sse.sh file i.e. 
