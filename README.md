@@ -22,14 +22,14 @@ At a high level, there are three parts to this demo:
 # Demo architecture 
 
 # Setting up the Confluent Cloud components 
-ccloud login \
+ccloud login --save \
 chmod +x setup.sh \
 ./setup.sh \
 make sure all components (including ksql queries) come up without error before moving on to deploying the race 
 
 # Running the demo 
 To setup the Confluent Cloud cluster, you need to give the springboot service access to produce to the cluster. In a terminal run the following commands: 
-ccloud login --save \
+ccloud login \
 ccloud kafka cluster list
 ccloud kafka cluster use <enter lkc for basic cluster here>
 
@@ -94,3 +94,10 @@ Now that topics are created, in the RaceCarEventsApplication output, you should 
 In running the RacecarApp, if any of the Immutable data models are giving you guff (saying they cannot be found on import etc.) try reloading all maven projects. Also please spin up the frontend before the backend to avoid port conflicts. 
 
 You can control + c in each terminal window to spin down the UI and backend (both the SSE and producer) when you are done. 
+  
+  
+# Simulating bets 
+
+Simulating bets will cause your odds calculations to change. In order to simulate bets for a given user, please run: \
+  node/bet-producer.js <bootstrap-server> <api-key> <api-secret> <racecardriver you want to bet on> <# of bets to simulate> \
+  you will be able to see the changing odds by running queries against the odds ktable (hint: try filtering by the racer you bet on and watch as their odds update in real time!
