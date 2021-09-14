@@ -12,13 +12,20 @@ At a high level, there are three parts to this demo:
 # Prerequisites
 1. Basic cluster in Confluent Cloud
 2. Confluent Cloud CLI 
-3. npm
+3. npm 
 3.5. npm install kafkajs, json-schema-faker and faker 
 4. java11
 5. vue.js 
 6. maven 
+7. jq
 
 # Demo architecture 
+
+# Setting up the Confluent Cloud components 
+ccloud login 
+chmod +x setup.sh
+./setup.sh 
+make sure all components (including ksql queries) come up without error before moving on to deploying the race 
 
 # Running the demo 
 To setup the Confluent Cloud cluster, you need to give the springboot service access to produce to the cluster. In a terminal run the following commands: 
