@@ -90,6 +90,6 @@ mvn package -U
 mvn org.springframework.boot:spring-boot-maven-plugin:run 
 
 
-In running the RacecarApp, if any of the Immutable data models are giving you guff (saying they cannot be found on import etc.) try reloading all maven projects. 
+In running the RacecarApp, if any of the Immutable data models are giving you guff (saying they cannot be found on import etc.) try reloading all maven projects. Also please spin up the frontend before the backend to avoid port conflicts. 
 
 You can control + c in each terminal window to spin down the UI and backend (both the SSE and producer) when you are done. 
