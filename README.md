@@ -84,6 +84,7 @@ mvn org.springframework.boot:spring-boot-maven-plugin:run
 
 ## startup laptime-producer (RacecarApp.java) 
 cd .. 
+ 
 cd laptime-producer
 mvn org.springframework.boot:spring-boot-maven-plugin:run 
 
