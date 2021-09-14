@@ -83,9 +83,10 @@ mvn package -U
 ## start SSE server (RaceCarEventsApplication.java) 
 export JAVA_HOME=`/usr/libexec/java_home -v 1.11` 
 cd race-car-events  
+mvn package -U 
 mvn org.springframework.boot:spring-boot-maven-plugin:run
 
-## startup laptime-producer (RacecarApp.java) 
+## startup laptime-producer in a separate, new terminal tab (RacecarApp.java) 
 cd .. 
 cd laptime-producer
 mvn org.springframework.boot:spring-boot-maven-plugin:run 
