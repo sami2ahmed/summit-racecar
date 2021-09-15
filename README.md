@@ -148,7 +148,10 @@ You can see the status of the race (who is in which position) by querying the ra
 Simulating bets will cause your odds calculations to change. In order to simulate bets for a given user, please run: \
 `node/bet-producer.js <bootstrap-server> <api-key> <api-secret> <racecardriver you want to bet on> <# of bets to simulate>` \
   you will be able to see the changing odds by running queries against the odds ktable 
-  
+
+You can simulate random bets that distribute across all drivers randomly.To do this, please run: \
+`node/random-bet-producer.js <bootstrap-server> <api-key> <api-secret> <# of bets to simulate>` \
+  you will be able to see the changing odds by running queries against the odds ktable 
   
 ###### ksqlDB queries to run to see the action !   
 
