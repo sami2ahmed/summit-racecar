@@ -62,8 +62,6 @@ you should now see the UI in the browser:
 
 Now to establish the server sent events (SSE) connection, ensure that port within the application.yml nested in the race-car-events module is set to the same port as the local UI endpoint (8080 in this case). 
 
-In order to configure the SASL_JAAS_CONFIG below, you need to generate api-key (sername/password) for use against the cluster generate by the setup.sh file.
-
 Importantly, you will also notice an application.properties file in the laptime-produce module i.e. (`java/laptime-producer/src/main/resources/application.properties`). Please configure the 4 environment variables so that this properties file is referencing your Confluent basic cluster, for example in my local application.properties I have: 
 
 ```
@@ -105,6 +103,18 @@ You can control + c in each terminal window to spin down the UI and backend (bot
   
 ## Simulating bets 
 
+Once you've kicked off your race, you can see the race events flowing through in either the racecarDemo topic (select the messages tab) or by querying the racecardemo stream in ksqlDB: \
+`select * from racecardemo emit changes` \
+\
+You can see the status of the race (who is in which position) by querying the racecarstatus table in ksqlDb \
+`select * from racecarstatus emit changes` \
+
 Simulating bets will cause your odds calculations to change. In order to simulate bets for a given user, please run: \
- **node/bet-producer.js [bootstrap-server] [api-key] [api-secret] [racecardriver you want to bet on] [# of bets to simulate]** \
-  you will be able to see the changing odds by running queries against the odds ktable (hint: try filtering by the racer you bet on and watch as their odds update in real time!
+`node/bet-producer.js [bootstrap-server] [api-key] [api-secret] [racecardriver you want to bet on] [# of bets to simulate]` \
+  you will be able to see the changing odds by running queries against the odds ktable 
+  
+  
+###### ksqlDB queries to run to see the action!   
+
+
+
