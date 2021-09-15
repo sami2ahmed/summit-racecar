@@ -110,7 +110,7 @@ You can see the status of the race (who is in which position) by querying the ra
 `select * from racecarstatus emit changes` \
 
 Simulating bets will cause your odds calculations to change. In order to simulate bets for a given user, please run: \
-`node/bet-producer.js [bootstrap-server] [api-key] [api-secret] [racecardriver you want to bet on] [# of bets to simulate]` \
+`node/bet-producer.js <bootstrap-server> <api-key> <api-secret> <racecardriver you want to bet on> <# of bets to simulate>` \
   you will be able to see the changing odds by running queries against the odds ktable 
   
   
