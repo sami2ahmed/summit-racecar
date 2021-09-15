@@ -116,5 +116,9 @@ Simulating bets will cause your odds calculations to change. In order to simulat
   
 ###### ksqlDB queries to run to see the action!   
 
-
+to see the current status of the betting: \
+`select * from betaggregation [emit changes]` \
+\
+to see the current staus of odds: \
+`select * from odds [emit changes]` \
 
