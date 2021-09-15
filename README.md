@@ -87,6 +87,9 @@ Now that topics are created, in the RaceCarEventsApplication output, you should 
 1. `chmod +x RacecarProducer.sh`
 2. `bash RacecarProducer.sh` 
 
+You should see the following in CCloud and the UI: 
+![CCloud](https://github.com/sami2ahmed/summit-racecar/blob/master/img/CCloud.png)
+
 In running the RacecarApp, if any of the Immutable data models are giving you guff (saying they cannot be found on import etc.) try reloading all maven projects. Also please spin up the frontend before the backend to avoid port conflicts. 
 
 You can control + c in each terminal window to spin down the UI and backend (both the SSE and producer) when you are done. 
