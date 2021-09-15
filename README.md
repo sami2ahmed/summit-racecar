@@ -62,6 +62,8 @@ you should now see the UI in the browser:
 
 Now to establish the server sent events (SSE) connection, ensure that port within the application.yml nested in the race-car-events module is set to the same port as the local UI endpoint (8080 in this case). 
 
+In order to configure the SASL_JAAS_CONFIG below, you need to generate api-key (sername/password) for use against the cluster generate by the setup.sh file.
+
 Importantly, you will also notice an application.properties file in the laptime-produce module i.e. (`java/laptime-producer/src/main/resources/application.properties`). Please configure the 4 environment variables so that this properties file is referencing your Confluent basic cluster, for example in my local application.properties I have: 
 
 ```
