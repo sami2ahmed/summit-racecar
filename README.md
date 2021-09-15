@@ -107,7 +107,7 @@ Once you've kicked off your race, you can see the race events flowing through in
 `select * from racecardemo emit changes` \
 \
 You can see the status of the race (who is in which position) by querying the racecarstatus table in ksqlDb \
-`select * from racecarstatus emit changes` \
+`select * from racecarstatus emit changes` 
 
 Simulating bets will cause your odds calculations to change. In order to simulate bets for a given user, please run: \
 `node/bet-producer.js <bootstrap-server> <api-key> <api-secret> <racecardriver you want to bet on> <# of bets to simulate>` \
@@ -120,5 +120,5 @@ to see the current status of the betting: \
 `select * from betaggregation [emit changes]` \
 \
 to see the current staus of odds: \
-`select * from odds [emit changes]` \
+`select * from odds [emit changes]` 
 
