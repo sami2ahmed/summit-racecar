@@ -15,7 +15,7 @@ At a high level, there are four parts to this demo:
 2. Confluent Cloud CLI 
 3. npm 
 3.5. npm install kafkajs, json-schema-faker and faker 
-4. java11
+4. java11 (set JAVA_HOME)
 5. vue.js 
 6. maven 
 7. jq
@@ -150,11 +150,11 @@ Simulating bets will cause your odds calculations to change. In order to simulat
   you will be able to see the changing odds by running queries against the odds ktable 
   
   
-###### ksqlDB queries to run to see the action!   
+###### ksqlDB queries to run to see the action !   
 
-to see the current status of the betting: \
+to see the current status of the betting (make sure to RUN FROM BEGINNING) : \
 `select * from betaggregation [emit changes]` \
 \
-to see the current staus of odds: \
+to see the current staus of odds (make sure to RUN FROM BEGINNING): \
 `select * from odds [emit changes]` 
 
