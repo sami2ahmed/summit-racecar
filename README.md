@@ -27,8 +27,6 @@ At a high level, there are four parts to this demo:
 ![ksql flow gen 1](https://github.com/sami2ahmed/summit-racecar/blob/master/img/ksql_flow_1.png)
 ![ksql flow gen 2](https://github.com/sami2ahmed/summit-racecar/blob/master/img/ksql_flow_2.png)
 
-
-
 # Running the demo 
 
 ## setting up the Confluent Cloud components 
@@ -68,7 +66,10 @@ you should now see the UI in the browser:
 
 Now to establish the server sent events (SSE) connection, ensure that port within the application.yml nested in the race-car-events module is set to the same port as the local UI endpoint (8080 in this case). 
 
-Importantly, you will also notice an application.properties file in the laptime-produce module i.e. (`java/laptime-producer/src/main/resources/application.properties`). Please configure the 4 environment variables so that this properties file is referencing your Confluent basic cluster, for example in my local application.properties I have: 
+## To run the SSE (RaceCarEventsApplication.java)
+open up another terminal window and set the environment variables below
+
+Importantly, you will also notice an application.properties file in the laptime-produce module i.e. (`java/laptime-producer/src/main/resources/application.properties`). Please configure the 4 environment variables so that this properties file is referencing your Confluent basic cluster, for example I ran export statements to get the below: 
 
 ```
 BOOTSTRAP_SERVERS=pkc-ef9nm.us-east-2.aws.confluent.cloud:9092
@@ -76,17 +77,34 @@ SECURITY_PROTOCOL=SASL_SSL
 SASL_JAAS_CONFIG=org.apache.kafka.common.security.plain.PlainLoginModule   required username='NOTREALYES4FAKER'   password='NOTREALBKDFLK1+nlOVC+NFeYZ9BpHDcsnQuhdgJeMaQhlHChlw/5+Cgsgl4lEnP';
 SASL_MECHANISM=PLAIN
 ```
-Please also configure those same four variables within the yaml file for the race-car-events module i.e. (`java/race-car-events/src/main/resources/application.yml`). Leave the port set to 8080. 
 
-## To run the SSE (RaceCarEventsApplication.java)
-open up another terminal window and run the sse.sh file i.e. 
+Within the summit-racecar dir, run these export statements and fill in your own BOOTSTRAP_SERVERS and SASL_JAAS_CONFIG
+
+```
+export BOOTSTRAP_SERVERS=
+export SECURITY_PROTOCOL=SASL_SSL
+export SASL_JAAS_CONFIG=";"
+export SASL_MECHANISM=PLAIN
+```
+
+Now run the sse.sh file i.e. 
 1. `chmod +x sse.sh`
 2. `bash sse.sh` 
 
 You should see a Netty started on 8080.
 
 ## Now we need to give the the sse access to the cluster through consumer group ACL. 
-open up another terminal windown and run the commands below: 
+open up another terminal windown and set the variables to the same as before. 
+
+Within the summit-racecar dir, run these export statements and fill in your own BOOTSTRAP_SERVERS and SASL_JAAS_CONFIG
+
+```
+export BOOTSTRAP_SERVERS=
+export SECURITY_PROTOCOL=SASL_SSL
+export SASL_JAAS_CONFIG=";"
+export SASL_MECHANISM=PLAIN
+```
+Now run the bash script:
 1. `chmod +x SseConsumerAcl.sh`
 2. `bash SseConsumerAcl.sh`   
   
@@ -97,6 +115,17 @@ We can now produce data from our client to server now that the connection has be
 Now that topics are created, in the RaceCarEventsApplication output, you should now also see a consumer group subscribe to racecarDemo topic, some output like: `Consumer clientId=car-consumer-1-8d93a253-34ca-4f2a-910f-86ed47487d7b, groupId=1] Subscribed to topic(s): racecarDemo`.  
   
 ## Open up another new terminal to launch the laptime-produce (RacecarApp.java)
+
+Within the summit-racecar dir, run these export statements and fill in your own BOOTSTRAP_SERVERS and SASL_JAAS_CONFIG as before:
+
+```
+export BOOTSTRAP_SERVERS=
+export SECURITY_PROTOCOL=SASL_SSL
+export SASL_JAAS_CONFIG=";"
+export SASL_MECHANISM=PLAIN
+```
+
+Now run the bash script
 1. `chmod +x RacecarProducer.sh`
 2. `bash RacecarProducer.sh` 
 
