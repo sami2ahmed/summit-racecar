@@ -52,7 +52,8 @@ Version: typescript 3.9.9
 open browser window, copy paste local endpoint app spins up on, for example: 
 `http://localhost:8080/`
 
-you should now see the UI in the browser: 
+you should now see the UI in the browser:
+![UI](https://github.com/sami2ahmed/summit-racecar/blob/master/img/UI.png)
 
 Now to establish the server sent events (SSE) connection, ensure that port within the application.yml nested in the race-car-events module is set to the same port as the local UI endpoint (8080 in this case). 
 
@@ -86,6 +87,10 @@ Now that topics are created, in the RaceCarEventsApplication output, you should 
 ## Open up another new terminal to launch the laptime-produce (RacecarApp.java)
 1. `chmod +x RacecarProducer.sh`
 2. `bash RacecarProducer.sh` 
+
+You should see the following in Confluent Cloud and the UI: 
+![CCloud](https://github.com/sami2ahmed/summit-racecar/blob/master/img/CCloud.png)
+![UI with data](https://github.com/sami2ahmed/summit-racecar/blob/master/img/UI_wdata.png)
 
 In running the RacecarApp, if any of the Immutable data models are giving you guff (saying they cannot be found on import etc.) try reloading all maven projects. Also please spin up the frontend before the backend to avoid port conflicts. 
 
