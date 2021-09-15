@@ -52,7 +52,8 @@ Version: typescript 3.9.9
 open browser window, copy paste local endpoint app spins up on, for example: 
 `http://localhost:8080/`
 
-you should now see the UI in the browser: 
+you should now see the UI in the browser:
+![UI](https://github.com/sami2ahmed/summit-racecar/blob/master/img/UI.png)
 
 Now to establish the server sent events (SSE) connection, ensure that port within the application.yml nested in the race-car-events module is set to the same port as the local UI endpoint (8080 in this case). 
 
