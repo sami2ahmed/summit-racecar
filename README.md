@@ -86,6 +86,7 @@ open up another terminal window and run the sse.sh file i.e.
 You should see a Netty started on 8080.
 
 ## Now we need to give the the sse access to the cluster through consumer group ACL. 
+open up another terminal windown and run the commands below: 
 1. `chmod +x SseConsumerAcl.sh`
 2. `bash SseConsumerAcl.sh`   
   
