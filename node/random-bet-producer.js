@@ -56,7 +56,7 @@ var sendMessages = async() => {
     }
     console.log(jsf.generate(bet)["betId"])
     await producer.send({
-      topic: 'fake-bet-landing',
+      topic: 'bet-landing',
       messages: [
         {key: (jsf.generate(bet)["betId"]).toString(), value: JSON.stringify(jsf.generate(bet))}
       ]
