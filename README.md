@@ -21,6 +21,11 @@ At a high level, there are four parts to this demo:
 7. jq
 
 # Demo architecture 
+![high level arch](https://github.com/sami2ahmed/summit-racecar/blob/master/img/summit_arch.png) 
+![confluent gen arch](https://github.com/sami2ahmed/summit-racecar/blob/master/img/auto_gen_1.png) 
+![confluent gen arch2](https://github.com/sami2ahmed/summit-racecar/blob/master/img/auto_gen_2.png)
+![ksql flow gen 1](https://github.com/sami2ahmed/summit-racecar/blob/master/img/ksql_flow_1.png)
+![ksql flow gen 2](https://github.com/sami2ahmed/summit-racecar/blob/master/img/ksql_flow_2.png)
 
 # Setting up the Confluent Cloud components 
 ccloud login --save \
