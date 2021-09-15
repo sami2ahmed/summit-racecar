@@ -89,6 +89,7 @@ Now that topics are created, in the RaceCarEventsApplication output, you should 
 
 You should see the following in CCloud and the UI: 
 ![CCloud](https://github.com/sami2ahmed/summit-racecar/blob/master/img/CCloud.png)
+![UI with data](https://github.com/sami2ahmed/summit-racecar/blob/master/img/UI_wdata.png)
 
 In running the RacecarApp, if any of the Immutable data models are giving you guff (saying they cannot be found on import etc.) try reloading all maven projects. Also please spin up the frontend before the backend to avoid port conflicts. 
 
