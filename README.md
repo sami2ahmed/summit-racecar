@@ -88,7 +88,7 @@ Now that topics are created, in the RaceCarEventsApplication output, you should 
 1. `chmod +x RacecarProducer.sh`
 2. `bash RacecarProducer.sh` 
 
-You should see the following in CCloud and the UI: 
+You should see the following in Confluent Cloud and the UI: 
 ![CCloud](https://github.com/sami2ahmed/summit-racecar/blob/master/img/CCloud.png)
 ![UI with data](https://github.com/sami2ahmed/summit-racecar/blob/master/img/UI_wdata.png)
 
