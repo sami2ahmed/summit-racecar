@@ -2,6 +2,7 @@
 
 CLUSTER_ID=$(ccloud kafka cluster list -o json | jq -r 'map(select(.name == "demo-kafka-cluster")) | .[].id')
 echo -e "\n# selecting existing basic cluster spun up earlier"
+ccloud kafka cluster use $CLUSTER_ID
 
 echo -e "\n# Create a new service account"
 RANDOM_NUM=$((1 + RANDOM % 1000000))
