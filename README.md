@@ -19,6 +19,7 @@ At a high level, there are four parts to this demo:
 5. vue.js 
 6. maven 
 7. jq
+8. https://immutables.github.io/apt.html -- this should enabled your IDE, maven does it automatically 
 
 # Demo architecture 
 ![high level arch](https://github.com/sami2ahmed/summit-racecar/blob/master/img/summit_arch.png) 
